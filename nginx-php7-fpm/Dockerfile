@@ -1,6 +1,4 @@
 FROM ubuntu:16.04
-MAINTAINER Donal Byrne <byrnedo@tcd.ie>
-
 # Surpress Upstart errors/warning
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
@@ -80,8 +78,8 @@ RUN chmod 755 /cmd.sh
 
 WORKDIR /var/www/html
 # add test PHP file
-#COPY ./index.php /var/www/html/index.php
-#RUN chown -Rf www-data.www-data /var/www/html
+COPY ./index.php /var/www/html/index.php
+RUN chown -Rf www-data.www-data /var/www/html
 
 # Expose Ports
 EXPOSE 80 443
