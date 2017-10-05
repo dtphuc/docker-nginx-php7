@@ -1,0 +1,17 @@
+version: '3'
+services:
+ php7:
+   build: ./nginx-php7-fpm
+   networks:
+     - phpapp-tier
+   ports:
+     - 20002-20003:80
+     - 20043-20044:443
+   volumes:
+     - /var/www/html:/var/www/html
+     - /var/www/docker/nginx/sites-enabled:/etc/nginx/sites-enabled
+     - /var/log/php7:/var/log/nginx
+
+networks:
+   phpapp-tier:
+     driver: bridge
